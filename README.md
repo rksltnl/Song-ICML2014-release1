@@ -22,7 +22,7 @@ LICENSE file for details).
 ### Install instructions
 
 1. Download and install R-CNN code (https://github.com/rbgirshick/rcnn)
-2. 
+2. Following the instructions in R-CNN code, precompute fc7 features on the dataset (i.e. PASCAL VOC 2007)
 3. Unpack this code.
 4. Start Matlab
 5. Mex compile the simplex projection cc code.
