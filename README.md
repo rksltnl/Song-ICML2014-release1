@@ -38,12 +38,12 @@ Extract (not finetuned) and save fc7 features on all Selective Search windows on
 2. Save features under feat_cache/voc_2007_flip_0_layer_fc7_finetuned_0/
 
 [B. Clustering]
-1. On cluster, launch `discover_paris_patches_parallel_single_nogt_20x1.m` in parallel with inputs (positive image id, classid). The first argument goes from 1 ~ #positive image per class. The second argument goes from 1 ~ 20.
+1. On cluster, launch `cluster_patches_parallel_single_nogt_20x1.m` in parallel with inputs (positive image id, classid). The first argument goes from 1 ~ #positive image per class. The second argument goes from 1 ~ 20.
 2. This will save about 70GB of clustering results for PASCAL VOC2007 under directory `paris_results_nogt_20x1/%s_%d.mat` where the first string is for the image id and the second integer if for class id (1~20).
 
 [C. Initial detector training via coverage maximization]
 1. Start matlab.
-2. Launch `train_classes_hos_paris_20x1_smooth_greedycover.m` with input (classid)
+2. Launch `train_classes_20x1_smooth_greedycover.m` with input (classid)
 
 [D. Refine via Smooth Latent SVM]
 1. Start matlab

@@ -1,7 +1,17 @@
 function models = train_classes_20x1_smooth_lsvm_topK_bagmine_greedycover(...
-  classid, sharpness, svm_mu, topK, alpha, K1, K2, nms_threshold, varargin)
+  classid, varargin)
      
-% HOS: represents both positive and negative images as bags.
+% HOS: represents both positive and negative images as bags and refines initial detector by minimizing smooth latent svm loss.
+
+% AUTORIGHTS
+% ---------------------------------------------------------
+% Copyright (c) 2014, Hyun Oh Song
+% 
+% This file is part of the Song-ICML2014 code and is available 
+% under the terms of the Simplified BSD License provided in 
+% LICENSE. Please retain this notice and LICENSE if you use 
+% this file (or any portion of it) in your project.
+% ---------------------------------------------------------
 
 % HOS: initialize and fix the random seed
 randn('state', 1);
@@ -15,13 +25,6 @@ trainset = 'trainval';
 year     = '2007';
 
 if ischar(classid),   classid   = str2double(classid);   end
-if ischar(sharpness), sharpness = str2double(sharpness); end
-if ischar(svm_mu),    svm_mu    = str2double(svm_mu);    end
-if ischar(topK),      topK      = str2double(topK);      end
-if ischar(alpha),     alpha     = str2double(alpha);     end
-if ischar(K1),        K1        = str2double(K1);        end
-if ischar(K2),        K2        = str2double(K2);        end
-if ischar(nms_threshold), nms_threshold = str2double(nms_threshold); end
 
 % cast optional parameters into double
 if length(varargin) ~= 0
@@ -42,13 +45,14 @@ ip = inputParser;
 ip.addRequired('trainset', @isstr);
 ip.addRequired('year',     @isstr);
 ip.addRequired('classid',  @isscalar);
-ip.addRequired('sharpness', @isscalar);
-ip.addRequired('svm_mu',  @isscalar);
-ip.addRequired('topK', @isscalar);
-ip.addRequired('alpha',    @isscalar);
-ip.addRequired('K1',       @isscalar);
-ip.addRequired('K2',       @isscalar);
-ip.addRequired('nms_threshold', @isscalar);
+
+ip.addParamValue('sharpness', 100, @isscalar);
+ip.addParamValue('svm_mu', 0.01, @isscalar);
+ip.addParamValue('topK', 15, @isscalar);
+ip.addParamValue('alpha', 0.95, @isscalar);
+ip.addParamValue('K1', 0.5, @isscalar);
+ip.addParamValue('K2', 1.0, @isscalar);
+ip.addParamValue('nms_threshold', 0.3, @isscalar);
 
 ip.addParamValue('loss_type',    'SmoothHinge', @isstr);
 ip.addParamValue('svm_C',           10^-3,   @isscalar);
@@ -59,8 +63,7 @@ ip.addParamValue('fine_tuned',      0,       @isscalar);
 ip.addParamValue('use_flipped',     0,       @isscalar);                
 ip.addParamValue('target_norm', 20, @isscalar);
 
-ip.parse(trainset, year, classid, sharpness, svm_mu, ...
-                  topK, alpha, K1, K2, nms_threshold,varargin{:});
+ip.parse(trainset, year, classid, varargin{:});
 opts = ip.Results;
 
 fprintf('\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n');

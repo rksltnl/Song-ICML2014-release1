@@ -1,17 +1,20 @@
-function eval_classes_20x1_smooth_lsvm_topK_bagmine_greedycover_new(...
-         classid, svm_mu, topK, alpha, K1, K2, nms_threshold)
+function eval_classes_20x1_smooth_lsvm_topK_bagmine_greedycover_new(classid)
                   
 % HOS: find the highest latent_iter and only evaluate mAP on it.       
 %       the ideas is since I only want the maximum mAP, its's quicker to
 %         go back and evaluate mAP on it's precursors.
        
+% AUTORIGHTS
+% ---------------------------------------------------------
+% Copyright (c) 2014, Hyun Oh Song
+% 
+% This file is part of the Song-ICML2014 code and is available 
+% under the terms of the Simplified BSD License provided in 
+% LICENSE. Please retain this notice and LICENSE if you use 
+% this file (or any portion of it) in your project.
+% ---------------------------------------------------------
+       
 if ischar(classid),     classid = str2double(classid); end
-if ischar(svm_mu),      svm_mu  = str2double(svm_mu);  end
-if ischar(topK),        topK = str2double(topK); end
-if ischar(alpha),       alpha = str2double(alpha); end
-if ischar(K1),          K1 = str2double(K1); end
-if ischar(K2),          K2 = str2double(K2); end
-if ischar(nms_threshold), nms_threshold = str2double(nms_threshold); end
 
 conf = voc_config();
 
@@ -23,6 +26,14 @@ bias_mult = '10';
 pos_loss_weight = '2';
 
 class_list = conf.pascal.VOCopts.classes;
+
+% learning parameters
+svm_mu = 0.01;
+topK = 15;
+alpha = 0.95;
+K1 = 0.5;
+K2 = 1.0;
+nms_threshold = 0.3;
 
 load_filename = ['latentiter_*' ,...
   '_clss_' class_list{classid}, ... 

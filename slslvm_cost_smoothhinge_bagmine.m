@@ -4,7 +4,16 @@ function [cost, grad] = slslvm_cost_smoothhinge_bagmine(...
                 neg_averaging_matrix, neg_cum_bag_idx,...
                 num_pos, num_neg, ...
                 y, pweighted_y, C, mu, pweight, sharpness, bias_mult)
-              
+       
+% AUTORIGHTS
+% ---------------------------------------------------------
+% Copyright (c) 2014, Hyun Oh Song
+% 
+% This file is part of the Song-ICML2014 code and is available 
+% under the terms of the Simplified BSD License provided in 
+% LICENSE. Please retain this notice and LICENSE if you use 
+% this file (or any portion of it) in your project.
+% ---------------------------------------------------------       
 
 [f_w_pos, pos_averaging_matrix] = compute_smooth_score(...
         w, pos_cum_bag_idx, pos_averaging_matrix, pos_X, mu, bias_mult);

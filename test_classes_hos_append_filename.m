@@ -4,6 +4,16 @@ function res = test_classes_hos_append_filename(...
 % Append given unique string to the filename so that we can load the 
 %   boxes and ap results later.
 
+% AUTORIGHTS
+% ---------------------------------------------------------
+% Copyright (c) 2014, Hyun Oh Song
+% 
+% This file is part of the Song-ICML2014 code and is available 
+% under the terms of the Simplified BSD License provided in 
+% LICENSE. Please retain this notice and LICENSE if you use 
+% this file (or any portion of it) in your project.
+% ---------------------------------------------------------
+
 use_res_salt = true;
 rm_res = true;
 comp_id = 'comp4';
