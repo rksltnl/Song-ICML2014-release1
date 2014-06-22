@@ -37,8 +37,8 @@ Extract (not finetuned) and save fc7 features on all Selective Search windows on
 1. Following the instructions in R-CNN code, precompute fc7 features.
 2. Save features under feat_cache/voc_2007_flip_0_layer_fc7_finetuned_0/
 
-[B. Clustering] (This is the slowest and the most computationally expensive step.)
-1. On cluster, launch `cluster_patches_parallel_single_nogt_20x1.m` in parallel with inputs (positive image id, classid). The first argument goes from 1 ~ #positive image per class. The second argument goes from 1 ~ 20.\\
+[B. Clustering] This is the slowest and the most computationally expensive step.
+1. On cluster, launch `cluster_patches_parallel_single_nogt_20x1.m` in parallel with inputs (positive image id, classid). The first argument goes from 1 ~ #positive image per class. The second argument goes from 1 ~ 20.
 2. This will save about 70GB of clustering results for PASCAL VOC2007 under directory `paris_results_nogt_20x1/%s_%d.mat` where the first string is for the image id and the second integer if for class id (1~20).
 
 [C. Initial detector training via coverage maximization]
