@@ -7,7 +7,7 @@ Song-ICML2014
 		title = "On learning to localize objects with minimum supervision",
 		booktitle = "International Conference on Machine Learning (ICML)",
 		year = "2014", 
-		author = "Hyun Oh Song and Ross Girshick and Stefanie Jegelka and Julien Mairal and Zaid Harchoui and Trevor Darrell",
+		author = "Hyun Oh Song and Ross Girshick and Stefanie Jegelka and Julien Mairal and Zaid Harchaoui and Trevor Darrell",
 	}
 
 ### License
