@@ -25,7 +25,7 @@ LICENSE file for details).
 2. Following the instructions in R-CNN code, precompute fc7 features on the dataset (i.e. PASCAL VOC 2007)
 3. Unpack this code.
 4. Start Matlab
-5. Mex compile the simplex projection cc code.
+5. Mex compile the simplex projection cc code. `>> curdir=pwd; cd('projsplx'); mex projsplx_c_float.cc; cd(curdir);`
 
 ### Train & Test work flow
 
